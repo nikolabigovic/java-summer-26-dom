@@ -5,11 +5,14 @@ import com.la.summer.dto.query.ProductDto;
 import com.la.summer.model.Product;
 import com.la.summer.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/product")
@@ -69,4 +72,24 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("read-header")
+    public ResponseEntity<Void> readHeader(@RequestHeader Map<String, String> requestHeaders) {
+        productService.readHeader(requestHeaders);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("read-headers-spring")
+    public ResponseEntity<Void> readHeaderSpring(@RequestHeader HttpHeaders httpHeaders) {
+        productService.readHeaderSpring(httpHeaders);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("return-headers")
+    public ResponseEntity<Void> returnHeaders() {
+        HttpHeaders httpHeaders = productService.returnHeaders();
+
+        return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+    }
 }
