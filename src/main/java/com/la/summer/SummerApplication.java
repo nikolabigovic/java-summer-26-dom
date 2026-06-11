@@ -10,8 +10,7 @@ public class SummerApplication {
 	public static void main(String[] args) {
 
 		ApplicationContext applicationContext = SpringApplication.run(SummerApplication.class, args);
-//		applicationContext.getBean("janko");
-//		applicationContext.getBean(Store.class);
+//
 	}
 
 }
