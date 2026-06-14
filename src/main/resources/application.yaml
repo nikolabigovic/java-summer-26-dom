@@ -2,7 +2,7 @@ spring:
   application:
     name: JAVA course - summer 26
   profiles:
-    active: default
+    active: domaci1
 
 server:
   port: 8080
