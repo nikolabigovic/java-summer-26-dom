@@ -1,16 +1,14 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: JAVA course - summer 26
   profiles:
     active: default
 
-server:
-  port: 8080
-
-fakestore:
-  url: https://fakestoreapi.com
-  username: sradenovic
-  api-key: dasdfasdada13912312-aas2
-  auth: true
-  ssl:
-    active: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/biblioteka_summer
+    username: root
+    password: root1234!
+    driver-class-name: com.mysql.cj.jdbc.Driver
