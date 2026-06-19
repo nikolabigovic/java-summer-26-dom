@@ -1,5 +1,6 @@
 package com.la.summer.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +24,8 @@ public class Autor {
     @Column(name = "biografija", length = 1000)
     private String biografija;
 
-    @OneToMany(mappedBy = "autor")
+//    @JsonManagedReference
+    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
     private List<Knjiga> knjigaList = new ArrayList<>();
 
 }

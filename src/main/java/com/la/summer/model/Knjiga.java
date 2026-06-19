@@ -1,5 +1,7 @@
 package com.la.summer.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +30,9 @@ public class Knjiga {
     @Column(name = "datum_izdavanja")
     private Instant datumIzdavanja;
 
-    @ManyToOne
+
+//    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "autor_id")
     private Autor autor;
 

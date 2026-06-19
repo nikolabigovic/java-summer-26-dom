@@ -29,7 +29,7 @@ public class KorisnikInfo {
     @Column(name = "datum_kreiranja")
     private LocalDateTime createdAt;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "korisnik_id")
     private Korisnik korisnik;
 }

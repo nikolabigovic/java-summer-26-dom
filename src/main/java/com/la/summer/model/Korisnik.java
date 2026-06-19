@@ -3,6 +3,8 @@ package com.la.summer.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +13,7 @@ import java.util.Set;
 @Table(name = "korisnik")
 @Getter
 @Setter
+@ToString
 public class Korisnik {
 
     @Id
@@ -35,7 +38,8 @@ public class Korisnik {
     @OneToOne(mappedBy = "korisnik")
     private KorisnikInfo korisnikInfo;
 
-    @ManyToMany
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "korisnik_role",
     joinColumns = @JoinColumn(name = "korisnik_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
