@@ -2,18 +2,22 @@ package com.la.summer.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.apache.commons.lang3.builder.ToStringExclude;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.HashSet;
 import java.util.Set;
 
+//@DynamicUpdate
 @Entity
 @Table(name = "korisnik")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Korisnik {
 
     @Id
@@ -35,13 +39,20 @@ public class Korisnik {
 
     private String password;
 
-    @OneToOne(mappedBy = "korisnik")
+    @OneToOne(mappedBy = "korisnik", fetch = FetchType.LAZY)
     private KorisnikInfo korisnikInfo;
 
-    @ToString.Exclude
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "korisnik_role",
     joinColumns = @JoinColumn(name = "korisnik_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roleSet = new HashSet<>();
+
+    public void addNewRole(Role role) {
+        this.roleSet.add(role);
+    }
+
+    public void removeNewRole(Role role) {
+        this.roleSet.remove(role);
+    }
 }

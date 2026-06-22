@@ -3,14 +3,17 @@ package com.la.summer.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CollectionId;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "korisnik_info")
 @Getter
 @Setter
+@ToString
 public class KorisnikInfo {
 
     @Id
@@ -29,7 +32,8 @@ public class KorisnikInfo {
     @Column(name = "datum_kreiranja")
     private LocalDateTime createdAt;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "korisnik_id")
+    @ToString.Exclude
     private Korisnik korisnik;
 }

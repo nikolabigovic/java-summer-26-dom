@@ -3,6 +3,7 @@ package com.la.summer.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "role")
+@ToString
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
