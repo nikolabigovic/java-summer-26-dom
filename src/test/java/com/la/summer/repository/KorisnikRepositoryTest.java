@@ -77,7 +77,7 @@ class KorisnikRepositoryTest {
     @Test
     public void testingInsertingData() {
         Korisnik korisnik = new Korisnik();
-//        korisnik.setId(4);
+        korisnik.setId(4);
         korisnik.setIme("Petar");
         korisnik.setPrezime("Petrovic");
         korisnik.setUsername("ppetrovic3");
@@ -86,7 +86,7 @@ class KorisnikRepositoryTest {
 //        roleList.add(new Role());
 //        korisnik.setRoleSet(roleList.stream().collect(Collectors.toSet()));
         //Good practice
-        korisnik.addNewRole(new Role());
+//        korisnik.addNewRole(new Role());
         korisnikRepository.save(korisnik);
     }
 
