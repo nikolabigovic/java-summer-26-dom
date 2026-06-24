@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Parameter;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +19,12 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
+@NamedStoredProcedureQuery(name = "imePrezime", procedureName = "concat_ime_i_prezime", parameters = {
+        @StoredProcedureParameter(name = "name", mode = ParameterMode.IN, type = String.class),
+        @StoredProcedureParameter(name = "surname", mode = ParameterMode.IN, type = String.class),
+        @StoredProcedureParameter(name = "imePrezime", mode = ParameterMode.OUT, type = String.class),
+}
+ )
 public class Korisnik {
 
     @Id

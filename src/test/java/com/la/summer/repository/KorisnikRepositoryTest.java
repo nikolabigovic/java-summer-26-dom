@@ -3,6 +3,8 @@ package com.la.summer.repository;
 import com.la.summer.dto.query.KorisnikDto;
 import com.la.summer.model.Korisnik;
 import com.la.summer.model.Role;
+import com.la.summer.projection.KorisnikProj;
+import com.la.summer.record.KorisnikRecord;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.Tuple;
 import lombok.extern.slf4j.Slf4j;
@@ -128,4 +130,25 @@ class KorisnikRepositoryTest {
         log.info("Korisnik username: {}", tuple.get("username").toString());
     }
 
+    @Test
+    public void testingProjectionMapping() {
+        KorisnikProj korisnikProj = korisnikRepository.getByUsernameProjection("sradenovic");
+        log.info("KorisnikProjection: {}", korisnikProj);
+        log.info("Korisnik username: {}", korisnikProj.getUsername());
+    }
+
+    @Test
+    public void testingRecordMapping() {
+        KorisnikRecord korisnikRecord = korisnikRepository.getByUsernameRecord("sradenovic");
+        log.info("KorisnikProjection: {}", korisnikRecord);
+        log.info("Korisnik username: {}", korisnikRecord.username());
+    }
+
+
+    @Test
+    @Transactional
+    public void testingSQLProcedure() {
+        String imePrezime = korisnikRepository.concatSQLProcedure("Stefan", "Radenovic");
+        log.info("Ime i prezime: {}", imePrezime);
+    }
 }

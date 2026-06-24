@@ -1,18 +1,23 @@
 package com.la.summer.repository;
 
 import com.la.summer.dto.query.KorisnikDto;
+import com.la.summer.filter.KorisnikSpecification;
 import com.la.summer.model.Korisnik;
+import com.la.summer.projection.KorisnikProj;
+import com.la.summer.record.KorisnikRecord;
 import jakarta.persistence.Tuple;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface KorisnikRepository extends JpaRepository<Korisnik, Integer> {
+public interface KorisnikRepository extends JpaRepository<Korisnik, Integer>, JpaSpecificationExecutor<Korisnik> {
 
     //JPA Method Query
     Korisnik findByUsername(String username);
@@ -47,8 +52,24 @@ public interface KorisnikRepository extends JpaRepository<Korisnik, Integer> {
     @Query("select new com.la.summer.dto.query.KorisnikDto(k.email, k.username, k.password) from Korisnik k where k.username = :username")
     KorisnikDto getByUsernameDto(String username);
 
+//    @Query("select k.email as email, k.username as username, k.password as password from Korisnik k where k.username = :username")
+//    KorisnikDto getByUsernameDtoNoNew(String username);
+
     //Tuple
     @Query("select k.email as email, k.username as username, k.password as password from Korisnik k where k.username = :username")
     Tuple getByUsernameTuple(String username);
+
+    //Interface based projection
+    @Query("select k.email as email, k.username as username, k.password as password from Korisnik k where k.username = :username")
+    KorisnikProj getByUsernameProjection(String username);
+
+    //Records
+    @Query("select k.email as email, k.username as username, k.password as password from Korisnik k where k.username = :username")
+    KorisnikRecord getByUsernameRecord(String username);
+
+
+    //SQL Procedure
+    @Procedure(name = "imePrezime")
+    String concatSQLProcedure(@Param("name") String ime, @Param("surname") String prezime);
 
 }
