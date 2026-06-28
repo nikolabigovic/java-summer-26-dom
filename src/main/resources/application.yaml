@@ -10,7 +10,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/biblioteka_summer
     username: root
-    password: root1234!
+    password: nikola2003
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
