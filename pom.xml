@@ -30,7 +30,7 @@
 		<java.version>17</java.version>
 		<appache.comm.version>3.20.0</appache.comm.version>
 		<lombok.version>1.18.46</lombok.version>
-		<core.version>3.5.4</core.version>
+		<mysql.version>9.7.0</mysql.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,6 +42,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<!-- Source: https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
@@ -56,41 +61,25 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
-		<!-- Source: https://mvnrepository.com/artifact/com.google.zxing/core -->
+		<!-- Source: https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 		<dependency>
-			<groupId>com.google.zxing</groupId>
-			<artifactId>core</artifactId>
-			<version>${core.version}</version>
-			<scope>compile</scope>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>${mysql.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
-		<finalName>domaci1-summer26</finalName>
-
+		<finalName>JavaSummer26</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.14.1</version>
-				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-							<version>${lombok.version}</version>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
